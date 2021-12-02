@@ -1,6 +1,7 @@
 import React, { FC, memo, useCallback, useState } from "react";
 import FormInput from "../../../primitives/Inputs/FormInput/FormInput";
-import { isEmail, passwordLength } from "../../../utils/formValidations";
+import { isEmail, passwordLength } from "../../../utils/form/formValidations";
+import { FormNames } from "../../../utils/form/formNames";
 
 interface AuthFieldsProps {
   mayBeStartValidate: boolean;
@@ -21,7 +22,7 @@ const AuthFields: FC<AuthFieldsProps> = ({ mayBeStartValidate }) => {
   return (
     <>
       <FormInput
-        name={"email"}
+        name={FormNames.email}
         value={email}
         onChange={handleChangeEmail}
         placeholder={"email"}
@@ -29,7 +30,7 @@ const AuthFields: FC<AuthFieldsProps> = ({ mayBeStartValidate }) => {
         mayBeStartValidate={mayBeStartValidate}
       />
       <FormInput
-        name={"password"}
+        name={FormNames.password}
         value={password}
         onChange={handleChangePassword}
         placeholder={"пароль"}
