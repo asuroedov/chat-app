@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'SomeFontBook';
+    font-weight: normal;
+    src: url('fonts/Font_Book.woff2') format('woff');
+}
+
+@font-face {
+    font-family: 'SomeFontDemi';
+    font-weight: normal;
+    src: url('fonts/Font_Demi.woff2') format('woff');
+}

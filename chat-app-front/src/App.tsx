@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
+import Auth from "./modules/Auth/Auth";
 
 function App() {
-  return <div className="App">React</div>;
+  return <Auth />;
 }
 
 export default App;
