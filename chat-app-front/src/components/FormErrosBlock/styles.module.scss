@@ -1,0 +1,10 @@
+@import "../../variables";
+
+.wrapper {
+  max-width: 320px;
+  width: 100%;
+  background: $red;
+  padding: 10px;
+  color: #fff;
+  border-radius: 12px;
+}

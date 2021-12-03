@@ -12,7 +12,14 @@ interface FormInputInterface extends BaseInputProps {
   mayBeStartValidate: boolean;
 }
 
-const FormInput: FC<FormInputInterface> = ({ validations, name, mayBeStartValidate, ...props }) => {
+const FormInput: FC<FormInputInterface> = ({
+  validations,
+  name,
+  mayBeStartValidate,
+  placeholder,
+  className,
+  ...props
+}) => {
   const { value } = props;
 
   const isValid = useMemo(() => {
@@ -25,7 +32,12 @@ const FormInput: FC<FormInputInterface> = ({ validations, name, mayBeStartValida
     isValid ? formErrors.removeErrorField(name) : formErrors.addErrorField(name);
   }, [isValid, name]);
 
-  return <BaseInput className={cn({ [styles.error]: !isValid })} {...props} />;
+  return (
+    <div className={cn(styles.wrapper, className)}>
+      <BaseInput className={cn(styles.input, { [styles.error]: !isValid }, className)} {...props} />
+      <div className={cn(styles.label, { [styles.transformLabel]: !!value })}>{placeholder}</div>
+    </div>
+  );
 };
 
 export default memo(FormInput);

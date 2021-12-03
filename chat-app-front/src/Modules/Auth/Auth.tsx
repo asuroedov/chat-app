@@ -3,6 +3,7 @@ import AuthFields from "./AuthFields/AuthFields";
 
 import styles from "./styles.module.scss";
 import FormErrorsBlock from "../../components/FormErrosBlock/FormErrorsBlock";
+import Button from "../../primitives/Button/Button";
 
 const Auth: FC = () => {
   const [mayBeStartValidate, setMayBeStartValidate] = useState(false);
@@ -12,13 +13,13 @@ const Auth: FC = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={(event) => event.preventDefault()}>
-        <AuthFields mayBeStartValidate={mayBeStartValidate} />
-        <button onClick={handleAuthClick}>Войти</button>
-        <FormErrorsBlock />
-      </form>
-    </div>
+    <form className={styles.container} onSubmit={(event) => event.preventDefault()}>
+      <AuthFields mayBeStartValidate={mayBeStartValidate} />
+      <Button onClick={handleAuthClick} className={styles.button}>
+        Войти
+      </Button>
+      <FormErrorsBlock />
+    </form>
   );
 };
 

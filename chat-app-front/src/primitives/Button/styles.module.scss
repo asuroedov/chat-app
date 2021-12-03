@@ -1,0 +1,17 @@
+@import "../../variables";
+$hoverBlue: #417496;
+
+.button {
+  border-radius: 9999px;
+  background: $blue;
+  border: 1px solid $blue;
+  padding: 5px 10px;
+  transition-duration: 0.2s;
+  color: #fff;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: $hoverBlue;
+  border-color: $hoverBlue;
+}

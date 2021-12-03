@@ -3,6 +3,8 @@ import FormInput from "../../../primitives/Inputs/FormInput/FormInput";
 import { isEmail, passwordLength } from "../../../utils/form/formValidations";
 import { FormNames } from "../../../utils/form/formNames";
 
+import styles from "./styles.module.scss";
+
 interface AuthFieldsProps {
   mayBeStartValidate: boolean;
 }
@@ -28,6 +30,7 @@ const AuthFields: FC<AuthFieldsProps> = ({ mayBeStartValidate }) => {
         placeholder={"email"}
         validations={[isEmail]}
         mayBeStartValidate={mayBeStartValidate}
+        className={styles.input}
       />
       <FormInput
         name={FormNames.password}
@@ -36,6 +39,7 @@ const AuthFields: FC<AuthFieldsProps> = ({ mayBeStartValidate }) => {
         placeholder={"пароль"}
         validations={[passwordLength]}
         mayBeStartValidate={mayBeStartValidate}
+        className={styles.input}
       />
     </>
   );
