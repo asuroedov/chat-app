@@ -1,0 +1,27 @@
+@import '../../variables';
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  padding: 10px;
+  border-radius: 50%;
+  background: $red;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.button:hover {
+  background: red;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.plusIcon {
+ fill: lightgray;
+}
