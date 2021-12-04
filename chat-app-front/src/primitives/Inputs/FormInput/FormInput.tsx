@@ -1,10 +1,11 @@
 import React, { FC, memo, useEffect, useMemo } from "react";
 import cn from "classnames";
-import BaseInput, { BaseInputProps } from "../BaseInput/BaseInput";
+import { BaseInputProps } from "../BaseInput/BaseInput";
 
 import styles from "./styles.module.scss";
 import formErrors from "../../../stores/formErrors/formErrors";
 import { FormNames } from "../../../utils/form/formNames";
+import InputWithTitle from "../InputWithTitle/InputWithTitle";
 
 interface FormInputInterface extends BaseInputProps {
   name: FormNames;
@@ -33,10 +34,7 @@ const FormInput: FC<FormInputInterface> = ({
   }, [isValid, name]);
 
   return (
-    <div className={cn(styles.wrapper, className)}>
-      <BaseInput className={cn(styles.input, { [styles.error]: !isValid }, className)} {...props} />
-      <div className={cn(styles.label, { [styles.transformLabel]: !!value })}>{placeholder}</div>
-    </div>
+    <InputWithTitle placeholder={placeholder} {...props} className={cn({ [styles.error]: !isValid }, className)} />
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import CircleButton from "../../primitives/CircleButton/CircleButton";
 
 import styles from "./styles.module.scss";
-import BaseModal from "../../primitives/BaseModal/BaseModal";
+import CreateChatModal from "../CreateChatModal/CreateChatModal";
 
 const ChatList = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,7 +20,7 @@ const ChatList = () => {
       <div className={styles.wrapper}>
         <CircleButton onClick={handleOpenCreateNewChatClick} />
       </div>
-      {modalVisible && <BaseModal closeModal={handleCloseCreateNewChat}>123</BaseModal>}
+      {modalVisible && <CreateChatModal closeModal={handleCloseCreateNewChat} />}
     </>
   );
 };

@@ -1,0 +1,35 @@
+@import '../../../variables';
+
+.wrapper {
+  position: relative;
+}
+
+.label {
+  position: absolute;
+  left: 15px;
+  top: 5px;
+  color: #8e8e8e;
+  transition-duration: 0.2s;
+  pointer-events: none;
+}
+
+.transformLabel {
+  top: -9px;
+  left: 15px;
+  font-size: 12px;
+  background: #fff;
+}
+
+.input {
+  padding: 8px 10px;
+  border-radius: 9999px;
+  border: 2px solid $blue;
+  outline: none;
+}
+
+.input:focus + .label {
+  top: -9px;
+  left: 15px;
+  font-size: 12px;
+  background: #fff;
+}

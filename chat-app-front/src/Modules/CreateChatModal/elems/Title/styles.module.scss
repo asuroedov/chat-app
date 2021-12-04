@@ -1,0 +1,18 @@
+@import '../../../../variables';
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 22px;
+  font-family: $someFontDemi;
+}
+
+.closeIcon {
+  display: flex;
+  flex-shrink: 0;
+  cursor: pointer;
+}
