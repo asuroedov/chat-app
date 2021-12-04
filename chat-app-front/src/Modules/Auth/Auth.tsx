@@ -1,26 +1,27 @@
-import React, { FC, memo, useCallback, useState } from "react";
+import React, { FC } from "react";
+import { Navigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+
 import AuthFields from "./AuthFields/AuthFields";
+import FormErrorsBlock from "../../components/FormErrosBlock/FormErrorsBlock";
+import FormTitle from "../../primitives/FormTitle/FormTitle";
+
+import authStore from "../../stores/auth/authStore";
 
 import styles from "./styles.module.scss";
-import FormErrorsBlock from "../../components/FormErrosBlock/FormErrorsBlock";
-import Button from "../../primitives/Button/Button";
 
 const Auth: FC = () => {
-  const [mayBeStartValidate, setMayBeStartValidate] = useState(false);
+  const { token } = authStore;
 
-  const handleAuthClick = useCallback(() => {
-    setMayBeStartValidate(true);
-  }, []);
+  if (token) return <Navigate to={"/"} />;
 
   return (
     <form className={styles.container} onSubmit={(event) => event.preventDefault()}>
-      <AuthFields mayBeStartValidate={mayBeStartValidate} />
-      <Button onClick={handleAuthClick} className={styles.button}>
-        Войти
-      </Button>
+      <FormTitle title={"Вход"} />
+      <AuthFields />
       <FormErrorsBlock />
     </form>
   );
 };
 
-export default memo(Auth);
+export default observer(Auth);

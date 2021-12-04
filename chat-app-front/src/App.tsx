@@ -1,8 +1,16 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Auth from "./modules/Auth/Auth";
 
 function App() {
-  return <Auth />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path={"/auth"} element={<Auth />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

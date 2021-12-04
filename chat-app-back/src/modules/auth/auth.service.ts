@@ -38,6 +38,7 @@ export class AuthService {
 
     return {
       id: user.id,
+      userName: user.userName,
       token: this.generateToken(user),
     };
   }
