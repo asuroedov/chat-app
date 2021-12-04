@@ -19,7 +19,7 @@ export class AuthController {
   async login(@Body() userDto: LoginUserDto) {
     const loginData = await this.authService.login(userDto);
 
-    if (!loginData) throw new HttpException("Неверные данные", 400);
+    if (!loginData) throw new HttpException("Неверные email или пароль", 400);
     return loginData;
   }
 
