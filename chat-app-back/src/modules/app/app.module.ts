@@ -4,6 +4,7 @@ import { UserModule } from "../user/user.module";
 import { UserEntity } from "../../models/UserEntity";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "../auth/auth.module";
+import { MessagesModule } from "../messages/messages.module";
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AuthModule } from "../auth/auth.module";
     }),
     UserModule,
     AuthModule,
+    MessagesModule,
   ],
   controllers: [],
   providers: [],

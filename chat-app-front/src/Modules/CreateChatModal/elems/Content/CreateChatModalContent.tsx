@@ -6,6 +6,7 @@ import Button from "../../../../primitives/Button/Button";
 
 import styles from "./styles.module.scss";
 import ErrorBlock from "../../../../primitives/ErrorBlock/ErrorBlcok";
+import chatEmits from "../../../../socket/chatEmits";
 
 interface CreateChatModalContentProps {}
 
@@ -15,6 +16,11 @@ const CreateChatModalContent: FC<CreateChatModalContentProps> = () => {
   const onInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setChatName(event.currentTarget.value);
   }, []);
+
+  const handleCreateChat = useCallback(() => {
+    if (!chatName) return;
+    chatEmits.createNewChat(chatName);
+  }, [chatName]);
 
   return (
     <div className={styles.content}>
@@ -26,7 +32,7 @@ const CreateChatModalContent: FC<CreateChatModalContentProps> = () => {
       />
 
       <div className={styles.buttons}>
-        <Button onClick={() => false} className={cn(styles.button, styles.mr10)}>
+        <Button onClick={handleCreateChat} className={cn(styles.button, styles.mr10)}>
           Создать чат
         </Button>
         <Button onClick={() => false} className={styles.button}>
