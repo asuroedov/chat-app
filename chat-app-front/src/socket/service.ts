@@ -1,4 +1,3 @@
-export const handleCreateChatSuccess = (payload: { message: string }) => {
-  const { message } = payload;
-  console.log(message);
+export const handleCreateChatSuccess = (payload: any) => {
+  console.log(payload);
 };
