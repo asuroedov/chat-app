@@ -1,5 +1,5 @@
 import { io, Socket } from "socket.io-client";
-import { handleCreateChatSuccess } from "./service";
+import { handleCreateChatSuccess, handleGetUserChatsSuccess } from "./service";
 import { socketEventNames } from "./socketEventNames";
 
 let socket: Socket;
@@ -11,6 +11,7 @@ export function initializeSocket(token: string) {
   });
 
   socket.on(socketEventNames.createChatSuccess, handleCreateChatSuccess);
+  socket.on(socketEventNames.getUserChatsSuccess, handleGetUserChatsSuccess);
 }
 
 export function getSocket() {

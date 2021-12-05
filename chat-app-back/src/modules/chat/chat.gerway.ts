@@ -22,4 +22,12 @@ export class ChatGateway {
     if (!createdChat) return { event: socketEventNames.createChatFail, data: {} };
     return { event: socketEventNames.createChatSuccess, data: createdChat };
   }
+
+  @SubscribeMessage(socketEventNames.getUserChats)
+  async getUserChats(@CurrentUser() user: UserEntity) {
+    const chats = await this.chatService.getUserChats(user);
+
+    if (!chats) return { event: socketEventNames.createChatFail };
+    return { event: socketEventNames.getUserChatsSuccess, data: chats };
+  }
 }

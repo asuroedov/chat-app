@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Exclude } from "class-transformer";
+import { ChatEntity } from "./ChatEntity";
 
 @Entity()
 export class UserEntity {
@@ -19,4 +20,8 @@ export class UserEntity {
   @Exclude()
   @Column("text")
   hashedPassword: string;
+
+  @ManyToMany(() => ChatEntity)
+  @JoinTable()
+  chats: ChatEntity[];
 }

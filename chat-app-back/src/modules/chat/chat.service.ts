@@ -6,7 +6,10 @@ import { UserEntity } from "../../models/UserEntity";
 
 @Injectable()
 export class ChatService {
-  constructor(@InjectRepository(ChatEntity) private chatRepository: Repository<ChatEntity>) {}
+  constructor(
+    @InjectRepository(ChatEntity) private chatRepository: Repository<ChatEntity>,
+    @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
+  ) {}
 
   async createChat(chatName: string, admin: UserEntity) {
     if (!chatName || !admin) return;
@@ -14,6 +17,17 @@ export class ChatService {
     const existedChat = await this.chatRepository.findOne({ chatName });
     if (existedChat) return;
 
-    return await this.chatRepository.save({ chatName, chatAdmin: admin });
+    const savedChat = await this.chatRepository.save({ chatName, chatAdmin: admin });
+
+    const foundUser = await this.userRepository.findOne(admin.id, { relations: ["chats"] });
+    foundUser.chats.push(savedChat);
+    await this.userRepository.save(foundUser);
+
+    return savedChat;
+  }
+
+  async getUserChats(user: UserEntity) {
+    const foundUser = await this.userRepository.findOne(user.id, { relations: ["chats"] });
+    return foundUser?.chats;
   }
 }

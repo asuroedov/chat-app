@@ -6,11 +6,12 @@ import { ChatGateway } from "./chat.gerway";
 import { ChatService } from "./chat.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ChatEntity } from "../../models/ChatEntity";
+import { UserEntity } from "../../models/UserEntity";
 
 @Module({
   imports: [
     UserModule,
-    TypeOrmModule.forFeature([ChatEntity]),
+    TypeOrmModule.forFeature([ChatEntity, UserEntity]),
     JwtModule.register({
       secret: process.env.JWT_KEY,
       signOptions: {
