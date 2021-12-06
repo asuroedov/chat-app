@@ -7,6 +7,7 @@ import { AuthModule } from "../auth/auth.module";
 import { ChatModule } from "../chat/chat.module";
 import { ChatEntity } from "../../models/ChatEntity";
 import { MessageEntity } from "../../models/MessageEntity";
+import { MessageModule } from "../message/message.module";
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { MessageEntity } from "../../models/MessageEntity";
     UserModule,
     AuthModule,
     ChatModule,
+    MessageModule,
   ],
   controllers: [],
   providers: [],

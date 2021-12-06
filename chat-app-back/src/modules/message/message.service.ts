@@ -13,5 +13,21 @@ export class MessageService {
     @InjectRepository(MessageEntity) private messageRepository: Repository<MessageEntity>,
   ) {}
 
-  async test() {}
+  async getMessages(chatId: number, user: UserEntity) {
+    const chat = await this.chatRepository.findOne({ id: chatId }, { relations: ["messages", "messages.owner"] });
+    if (!chat) return;
+
+    return chat.messages;
+  }
+
+  async newMessage(messageText: string, chatId: number, user: UserEntity) {
+    const chat = await this.chatRepository.findOne({ id: chatId }, { relations: ["messages"] });
+    if (!chat) return;
+
+    const newMessage = await this.messageRepository.save({ chat, owner: user, text: messageText });
+    chat.messages.push(newMessage);
+    await this.chatRepository.save(chat);
+
+    return { ...newMessage, chat: { ...newMessage.chat, messages: undefined }, owner: user };
+  }
 }

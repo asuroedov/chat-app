@@ -8,10 +8,15 @@ interface ChatCardProps {
   chatName: string;
   lastMessage?: MessageInterface;
   className?: string;
+  onClick?: () => void;
 }
 
-const ChatCard: FC<ChatCardProps> = ({ chatName, lastMessage, className }) => {
-  return <div className={cn(styles.chatCard, className)}>{chatName}</div>;
+const ChatCard: FC<ChatCardProps> = ({ chatName, lastMessage, onClick, className }) => {
+  return (
+    <div className={cn(styles.chatCard, className)} onClick={onClick}>
+      {chatName}
+    </div>
+  );
 };
 
 export default memo(ChatCard);

@@ -20,6 +20,11 @@ const ChatList = () => {
     setModalVisible(false);
   }, []);
 
+  const handleChatClick = useCallback((chatId: number) => {
+    chatsStore.setSelectedChatIndex(chatId);
+    chatsStore.fetchMessages();
+  }, []);
+
   useEffect(() => {
     chatsStore.fetchChats();
   }, []);
@@ -29,7 +34,7 @@ const ChatList = () => {
       <div className={styles.wrapper}>
         <div className={styles.chatList}>
           {chats.map((chat) => (
-            <ChatCard key={chat.id} {...chat} />
+            <ChatCard key={chat.id} {...chat} onClick={() => handleChatClick(chat.id)} />
           ))}
         </div>
         <CircleButton onClick={handleOpenCreateNewChatClick} className={styles.addBtn} />
