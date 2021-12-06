@@ -35,7 +35,7 @@ const CreateChatModalContent: FC<CreateChatModalContentProps> = () => {
         <Button onClick={handleCreateChat} className={cn(styles.button, styles.mr10)}>
           Создать чат
         </Button>
-        <Button onClick={() => false} className={styles.button}>
+        <Button onClick={() => chatEmits.getChats()} className={styles.button}>
           Отмена
         </Button>
       </div>

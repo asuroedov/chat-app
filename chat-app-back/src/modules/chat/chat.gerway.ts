@@ -1,11 +1,11 @@
 import { MessageBody, SubscribeMessage, WebSocketGateway } from "@nestjs/websockets";
 import { ClassSerializerInterceptor, UseGuards, UseInterceptors } from "@nestjs/common";
 
-import { SocketJwtAuthGuard } from "./socketJwtAuthGuard.guard";
+import { SocketJwtAuthGuard } from "../../guards/socketJwtAuthGuard.guard";
 import { UserEntity } from "../../models/UserEntity";
 import { CurrentUser } from "../../decorators/currentUser.decorator";
 import { ChatService } from "./chat.service";
-import { socketEventNames } from "./socketEventNames";
+import { socketEventNames } from "../../utils/socketEventNames";
 
 @UseGuards(SocketJwtAuthGuard)
 @WebSocketGateway(5050, { cors: true })
@@ -23,6 +23,7 @@ export class ChatGateway {
     return { event: socketEventNames.createChatSuccess, data: createdChat };
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @SubscribeMessage(socketEventNames.getUserChats)
   async getUserChats(@CurrentUser() user: UserEntity) {
     const chats = await this.chatService.getUserChats(user);

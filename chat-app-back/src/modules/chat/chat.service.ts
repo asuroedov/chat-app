@@ -27,7 +27,9 @@ export class ChatService {
   }
 
   async getUserChats(user: UserEntity) {
-    const foundUser = await this.userRepository.findOne(user.id, { relations: ["chats"] });
+    const foundUser = await this.userRepository.findOne(user.id, {
+      relations: ["chats", "chats.lastMessage", "chats.chatAdmin"],
+    });
     return foundUser?.chats;
   }
 }

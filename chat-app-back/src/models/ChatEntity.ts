@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "./UserEntity";
+import { MessageEntity } from "./MessageEntity";
 
 @Entity()
 export class ChatEntity {
@@ -14,4 +15,8 @@ export class ChatEntity {
 
   @ManyToOne(() => UserEntity, (user) => user)
   chatAdmin: UserEntity;
+
+  @OneToOne(() => MessageEntity)
+  @JoinColumn()
+  lastMessage: MessageEntity;
 }
