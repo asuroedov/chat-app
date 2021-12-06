@@ -7,6 +7,7 @@ interface ErrorCardInterface {
 }
 
 const ErrorCard: FC<ErrorCardInterface> = ({ text }) => {
+  if (!text) return <></>;
   return (
     <div className={styles.wrapper}>
       <DotIcon className={styles.icon} />

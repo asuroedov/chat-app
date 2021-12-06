@@ -4,6 +4,9 @@ import { UserModule } from "../user/user.module";
 import { UserEntity } from "../../models/UserEntity";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "../auth/auth.module";
+import { ChatModule } from "../chat/chat.module";
+import { ChatEntity } from "../../models/ChatEntity";
+import { MessageEntity } from "../../models/MessageEntity";
 
 @Module({
   imports: [
@@ -15,11 +18,12 @@ import { AuthModule } from "../auth/auth.module";
       username: "postgres",
       password: process.env.DB_PASS,
       database: "chat-app",
-      entities: [UserEntity],
+      entities: [UserEntity, ChatEntity, MessageEntity],
       synchronize: true,
     }),
     UserModule,
     AuthModule,
+    ChatModule,
   ],
   controllers: [],
   providers: [],
