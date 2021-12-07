@@ -18,4 +18,8 @@ export enum socketEventNames {
   generateJoinLink = "generateJoinLink",
   generateJoinLinkSuccess = "generateJoinLink:success",
   generateJoinLinkFail = "generateJoinLink:fail",
+
+  addUserInChat = "addUserInChat",
+  addUserInChatSuccess = "addUserInChat:success",
+  addUserInChatFail = "addUserInChat:fail",
 }

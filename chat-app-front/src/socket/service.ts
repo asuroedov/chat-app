@@ -14,6 +14,10 @@ export const handleGenerateJoinLinkSuccess = (link: string) => {
   navigator.clipboard.writeText(link);
 };
 
+export const addUserInChat = (chat: ChatInterface) => {
+  console.log(chat);
+};
+
 export const handleGetMessagesSuccess = (messages: MessageInterface[]) => {
   chatsStore.setMessages(messages);
 };

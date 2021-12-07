@@ -3,6 +3,8 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -24,6 +26,10 @@ export class ChatEntity {
 
   @ManyToOne(() => UserEntity, (user) => user)
   chatAdmin: UserEntity;
+
+  @ManyToMany(() => UserEntity)
+  @JoinTable()
+  members: UserEntity[];
 
   @OneToMany(() => MessageEntity, (message) => message.chat)
   messages: MessageEntity[];

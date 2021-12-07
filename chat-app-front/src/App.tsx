@@ -6,6 +6,7 @@ import MainPage from "./modules/MainPage/MainPage";
 import { observer } from "mobx-react-lite";
 import authStore from "./stores/auth/authStore";
 import { initializeSocket } from "./socket/socket";
+import JoinChat from "./modules/JoinChat/JoinChat";
 
 function App() {
   const { token } = authStore;
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<MainPage />} />
         <Route path={"/auth"} element={<Auth />} />
+        <Route path={"/join/*"} element={<JoinChat />} />
       </Routes>
     </BrowserRouter>
   );

@@ -38,9 +38,25 @@ export class ChatService {
   async generateJoinLink(chatId: number, user: UserEntity) {
     const foundUser = await this.userRepository.findOne({ id: user.id }, { relations: ["chats"] });
     if (!foundUser) return;
-    if (!foundUser.chats.find((chat) => chat.id === chatId)) return;
+    const foundChat = foundUser.chats.find((chat) => chat.id === chatId);
+    if (!foundChat) return;
 
-    const link = this.jwtService.sign({ chatId });
-    return `${process.env.HOST}:${process.env.PORT}/join/${link}`;
+    const link = this.jwtService.sign({ chatId, chatName: foundChat.chatName });
+    return `${process.env.HOST}/join/${link}`;
+  }
+
+  async addUserInChat(joinLink: string, user: UserEntity) {
+    const { chatId } = this.jwtService.verify(joinLink);
+
+    const foundChat = await this.chatRepository.findOne({ id: chatId }, { relations: ["members"] });
+    if (!foundChat) return;
+
+    foundChat.members.push(user);
+    await this.chatRepository.save(foundChat);
+
+    user.chats.push(foundChat);
+    await this.userRepository.save(user);
+
+    return foundChat;
   }
 }

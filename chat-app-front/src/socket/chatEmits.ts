@@ -14,6 +14,10 @@ class ChatEmits {
     getSocket()?.emit(socketEventNames.generateJoinLink, { chatId });
   }
 
+  addUserInChat(joinLink: string) {
+    getSocket()?.emit(socketEventNames.addUserInChat, { joinLink });
+  }
+
   getMessages(chatId: number) {
     getSocket()?.emit(socketEventNames.getMessages, { chatId });
   }
