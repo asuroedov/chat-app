@@ -10,6 +10,10 @@ export const handleGetUserChatsSuccess = (payload: ChatInterface[]) => {
   chatsStore.setChats(payload);
 };
 
+export const handleGenerateJoinLinkSuccess = (link: string) => {
+  navigator.clipboard.writeText(link);
+};
+
 export const handleGetMessagesSuccess = (messages: MessageInterface[]) => {
   chatsStore.setMessages(messages);
 };

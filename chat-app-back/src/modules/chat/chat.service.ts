@@ -40,6 +40,7 @@ export class ChatService {
     if (!foundUser) return;
     if (!foundUser.chats.find((chat) => chat.id === chatId)) return;
 
-    return this.jwtService.sign({ chatId });
+    const link = this.jwtService.sign({ chatId });
+    return `${process.env.HOST}:${process.env.PORT}/join/${link}`;
   }
 }

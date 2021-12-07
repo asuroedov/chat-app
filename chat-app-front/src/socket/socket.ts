@@ -1,6 +1,7 @@
 import { io, Socket } from "socket.io-client";
 import {
   handleCreateChatSuccess,
+  handleGenerateJoinLinkSuccess,
   handleGetMessagesSuccess,
   handleGetUserChatsSuccess,
   handleSendMessagesSuccess,
@@ -17,6 +18,7 @@ export function initializeSocket(token: string) {
 
   socket.on(socketEventNames.createChatSuccess, handleCreateChatSuccess);
   socket.on(socketEventNames.getUserChatsSuccess, handleGetUserChatsSuccess);
+  socket.on(socketEventNames.generateJoinLinkSuccess, handleGenerateJoinLinkSuccess);
   socket.on(socketEventNames.getMessagesSuccess, handleGetMessagesSuccess);
   socket.on(socketEventNames.sendMessageSuccess, handleSendMessagesSuccess);
 }

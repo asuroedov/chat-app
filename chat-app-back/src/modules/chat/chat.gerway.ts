@@ -35,7 +35,9 @@ export class ChatGateway {
   @UseInterceptors(ClassSerializerInterceptor)
   @SubscribeMessage(socketEventNames.generateJoinLink)
   async generateJoinLink(@MessageBody() payload: { chatId: number }, @CurrentUser() user: UserEntity) {
-    const x = await this.chatService.generateJoinLink(payload.chatId, user);
-    console.log(x);
+    const link = await this.chatService.generateJoinLink(payload.chatId, user);
+
+    if (!link) return { event: socketEventNames.generateJoinLinkFail };
+    return { event: socketEventNames.generateJoinLinkSuccess, data: link };
   }
 }
