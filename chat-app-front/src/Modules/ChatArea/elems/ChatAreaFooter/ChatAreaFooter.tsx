@@ -20,10 +20,8 @@ const ChatAreaFooter = () => {
 
   return (
     <div className={styles.chatAreaFooter}>
-      <textarea rows={3} value={message} onChange={handleChangeMessage} />
-      <div className={styles.sendIconWrapper} onClick={handleSendMessageClick}>
-        <SendIcon className={styles.sendIcon} />
-      </div>
+      <textarea rows={3} value={message} onChange={handleChangeMessage} className={styles.textArea} />
+      <SendIcon className={styles.sendIcon} onClick={handleSendMessageClick} />
     </div>
   );
 };

@@ -14,4 +14,8 @@ export enum socketEventNames {
   sendMessage = "sendMessage",
   sendMessageSuccess = "sendMessage:success",
   sendMessageFail = "sendMessage:fail",
+
+  generateJoinLink = "generateJoinLink",
+  generateJoinLinkSuccess = "generateJoinLink:success",
+  generateJoinLinkFail = "generateJoinLink:fail",
 }

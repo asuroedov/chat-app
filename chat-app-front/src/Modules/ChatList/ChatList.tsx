@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import CircleButton from "../../primitives/CircleButton/CircleButton";
+import CircleButton from "../../components/CircleButton/CircleButton";
 
 import styles from "./styles.module.scss";
 import CreateChatModal from "../CreateChatModal/CreateChatModal";

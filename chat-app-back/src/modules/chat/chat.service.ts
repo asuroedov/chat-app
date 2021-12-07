@@ -3,12 +3,14 @@ import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ChatEntity } from "../../models/ChatEntity";
 import { UserEntity } from "../../models/UserEntity";
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class ChatService {
   constructor(
     @InjectRepository(ChatEntity) private chatRepository: Repository<ChatEntity>,
     @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
+    private jwtService: JwtService,
   ) {}
 
   async createChat(chatName: string, admin: UserEntity) {
@@ -31,5 +33,13 @@ export class ChatService {
       relations: ["chats", "chats.lastMessage", "chats.chatAdmin"],
     });
     return foundUser?.chats;
+  }
+
+  async generateJoinLink(chatId: number, user: UserEntity) {
+    const foundUser = await this.userRepository.findOne({ id: user.id }, { relations: ["chats"] });
+    if (!foundUser) return;
+    if (!foundUser.chats.find((chat) => chat.id === chatId)) return;
+
+    return this.jwtService.sign({ chatId });
   }
 }

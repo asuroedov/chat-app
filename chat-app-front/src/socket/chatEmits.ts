@@ -10,6 +10,10 @@ class ChatEmits {
     getSocket()?.emit(socketEventNames.getUserChats);
   }
 
+  createJoinLink(chatId: number) {
+    getSocket()?.emit(socketEventNames.generateJoinLink, { chatId });
+  }
+
   getMessages(chatId: number) {
     getSocket()?.emit(socketEventNames.getMessages, { chatId });
   }

@@ -1,0 +1,20 @@
+@import '../../../../variables';
+
+.chatAreaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: 50px;
+  width: 100%;
+}
+
+.chatName {
+  font-family: $someFontDemi;
+  font-size: 22px;
+}
+
+.settingsIcon {
+  width: 24px;
+  height: 24px;
+}

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import BaseModal from "../../primitives/BaseModal/BaseModal";
+import BaseModal from "../../components/BaseModal/BaseModal";
 
 import styles from "./styles.module.scss";
-import CreateChatModalTitle from "./elems/Title/CreateChatModalTitle";
+import CreateChatModalTitle from "../../components/ModalTitle/ModalTitle";
 import CreateChatModalContent from "./elems/Content/CreateChatModalContent";
 
 interface CreateChatModalProps {
@@ -13,7 +13,7 @@ const CreateChatModal: FC<CreateChatModalProps> = ({ closeModal }) => {
   return (
     <BaseModal closeModal={closeModal} className={styles.modal}>
       <div className={styles.wrapper}>
-        <CreateChatModalTitle closeModal={closeModal} />
+        <CreateChatModalTitle closeModal={closeModal} title={"Создание нового чата"} />
         <CreateChatModalContent />
       </div>
     </BaseModal>

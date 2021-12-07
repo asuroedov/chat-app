@@ -1,10 +1,10 @@
 import React, { FC, useCallback, useState } from "react";
-import FormInput from "../../../primitives/Inputs/FormInput/FormInput";
+import FormInput from "../../../components/Inputs/FormInput/FormInput";
 import { isEmail, passwordLength } from "../../../utils/form/formValidations";
 import { FormNames } from "../../../utils/form/formNames";
 
 import styles from "./styles.module.scss";
-import Button from "../../../primitives/Button/Button";
+import Button from "../../../components/Button/Button";
 import { observer } from "mobx-react-lite";
 import formErrors from "../../../stores/formErrors/formErrors";
 import authStore from "../../../stores/auth/authStore";

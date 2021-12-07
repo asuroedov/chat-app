@@ -31,4 +31,11 @@ export class ChatGateway {
     if (!chats) return { event: socketEventNames.createChatFail };
     return { event: socketEventNames.getUserChatsSuccess, data: chats };
   }
+
+  @UseInterceptors(ClassSerializerInterceptor)
+  @SubscribeMessage(socketEventNames.generateJoinLink)
+  async generateJoinLink(@MessageBody() payload: { chatId: number }, @CurrentUser() user: UserEntity) {
+    const x = await this.chatService.generateJoinLink(payload.chatId, user);
+    console.log(x);
+  }
 }

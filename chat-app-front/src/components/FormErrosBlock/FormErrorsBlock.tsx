@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import formErrors from "../../stores/formErrors/formErrors";
 import authStore from "../../stores/auth/authStore";
 import matchFormErrorsMessage from "../../utils/form/matchFormErrorsMessage";
-import ErrorBlock from "../../primitives/ErrorBlock/ErrorBlcok";
+import ErrorBlock from "../ErrorBlock/ErrorBlcok";
 
 const FormErrorsBlock = () => {
   const errorFiledNames = formErrors.errorFieldNames;

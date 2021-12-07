@@ -1,0 +1,12 @@
+@import '../../variables';
+
+.chatNoSelect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 20px;
+  font-family: $someFontDemi;
+  font-size: 24px;
+}
