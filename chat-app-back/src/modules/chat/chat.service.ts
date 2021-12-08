@@ -54,8 +54,10 @@ export class ChatService {
     foundChat.members.push(user);
     await this.chatRepository.save(foundChat);
 
-    user.chats.push(foundChat);
-    await this.userRepository.save(user);
+    const userWithChats = await this.userRepository.findOne({ id: user.id }, { relations: ["chats"] });
+
+    userWithChats.chats.push(foundChat);
+    await this.userRepository.save(userWithChats);
 
     return foundChat;
   }

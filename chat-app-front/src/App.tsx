@@ -12,6 +12,11 @@ function App() {
   const { token } = authStore;
 
   useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    if (!token && localToken) authStore.profile(localToken);
+  }, [token]);
+
+  useEffect(() => {
     if (token) initializeSocket(token);
   }, [token]);
 

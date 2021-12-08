@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { login } from "../../api/auth";
+import { login, profile } from "../../api/auth";
 
 class AuthStore {
   userId: number | null = null;
@@ -22,6 +22,17 @@ class AuthStore {
     this.errorMessage = "";
     this.userId = data.id;
     this.token = data.token;
+    this.userName = data.userName;
+
+    localStorage.setItem("token", data.token);
+  }
+
+  async profile(token: string) {
+    const [data, errorMessage] = await profile(token);
+    if (!data) return;
+
+    this.userId = data.id;
+    this.token = token;
     this.userName = data.userName;
   }
 }
