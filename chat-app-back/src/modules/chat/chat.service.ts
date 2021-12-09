@@ -30,7 +30,7 @@ export class ChatService {
 
   async getUserChats(user: UserEntity) {
     const foundUser = await this.userRepository.findOne(user.id, {
-      relations: ["chats", "chats.lastMessage", "chats.chatAdmin"],
+      relations: ["chats", "chats.lastMessage", "chats.lastMessage.owner", "chats.chatAdmin"],
     });
     return foundUser?.chats;
   }

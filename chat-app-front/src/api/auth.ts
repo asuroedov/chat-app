@@ -1,8 +1,9 @@
 import axios from "axios";
 import { LoginResponse, ProfileResponse } from "../types/auth";
 import { errorHandler } from "../utils/errorHandler";
+import { config } from "../utils/config";
 
-const BASE_URL = `http://localhost:5000/`;
+const BASE_URL = config.BASE_URL;
 const route = "auth/";
 
 export async function login(email: string, password: string) {

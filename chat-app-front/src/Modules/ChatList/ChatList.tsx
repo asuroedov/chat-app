@@ -32,11 +32,9 @@ const ChatList = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <div className={styles.chatList}>
-          {chats.map((chat) => (
-            <ChatCard key={chat.id} {...chat} onClick={() => handleChatClick(chat.id)} />
-          ))}
-        </div>
+        {chats.map((chat) => (
+          <ChatCard key={chat.id} {...chat} onClick={() => handleChatClick(chat.id)} />
+        ))}
         <CircleButton onClick={handleOpenCreateNewChatClick} className={styles.addBtn} />
       </div>
       {modalVisible && <CreateChatModal closeModal={handleCloseCreateNewChat} />}

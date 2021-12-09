@@ -12,7 +12,8 @@ interface MessageCardProps {
 const MessageCard: FC<MessageCardProps> = ({ messageText, owner, onClick }) => {
   return (
     <div className={styles.messageCard} onClick={onClick}>
-      {messageText}
+      {owner && <div className={styles.owner}>{owner.userName}</div>}
+      <div>{messageText}</div>
     </div>
   );
 };

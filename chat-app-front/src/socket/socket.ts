@@ -8,11 +8,12 @@ import {
   handleSendMessagesSuccess,
 } from "./service";
 import { socketEventNames } from "./socketEventNames";
+import { config } from "../utils/config";
 
 let socket: Socket;
 
 export function initializeSocket(token: string) {
-  socket = io("ws://localhost:5050", {
+  socket = io(config.SOCKET_URI, {
     extraHeaders: { token },
     autoConnect: true,
   });

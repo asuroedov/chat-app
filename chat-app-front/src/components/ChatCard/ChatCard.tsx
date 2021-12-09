@@ -14,7 +14,8 @@ interface ChatCardProps {
 const ChatCard: FC<ChatCardProps> = ({ chatName, lastMessage, onClick, className }) => {
   return (
     <div className={cn(styles.chatCard, className)} onClick={onClick}>
-      {chatName}
+      <div className={styles.chatName}>{chatName}</div>
+      {lastMessage && <div className={styles.lastMessage}>{`${lastMessage.owner.userName}: ${lastMessage.text}`}</div>}
     </div>
   );
 };

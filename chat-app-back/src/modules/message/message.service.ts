@@ -26,6 +26,7 @@ export class MessageService {
 
     const newMessage = await this.messageRepository.save({ chat, owner: user, text: messageText });
     chat.messages.push(newMessage);
+    chat.lastMessage = { ...newMessage, chat: undefined };
     await this.chatRepository.save(chat);
 
     return { ...newMessage, chat: { ...newMessage.chat, messages: undefined }, owner: user };
