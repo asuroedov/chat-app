@@ -1,0 +1,8 @@
+.messageArea {
+  overflow: auto;
+  max-height: calc(100vh - 120px);
+  margin-bottom: 20px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  padding: 0 10px;
+}

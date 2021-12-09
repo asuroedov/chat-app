@@ -1,11 +1,11 @@
 import React, { FC, memo, useCallback, useState } from "react";
 import cn from "classnames";
 
-import InputWithTitle from "../../../../primitives/Inputs/InputWithTitle/InputWithTitle";
-import Button from "../../../../primitives/Button/Button";
+import InputWithTitle from "../../../../components/Inputs/InputWithTitle/InputWithTitle";
+import Button from "../../../../components/Button/Button";
 
 import styles from "./styles.module.scss";
-import ErrorBlock from "../../../../primitives/ErrorBlock/ErrorBlcok";
+import ErrorBlock from "../../../../components/ErrorBlock/ErrorBlcok";
 import chatEmits from "../../../../socket/chatEmits";
 
 interface CreateChatModalContentProps {}

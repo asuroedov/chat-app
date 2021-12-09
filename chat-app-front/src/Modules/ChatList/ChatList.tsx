@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import CircleButton from "../../primitives/CircleButton/CircleButton";
+import CircleButton from "../../components/CircleButton/CircleButton";
 
 import styles from "./styles.module.scss";
 import CreateChatModal from "../CreateChatModal/CreateChatModal";
@@ -20,6 +20,11 @@ const ChatList = () => {
     setModalVisible(false);
   }, []);
 
+  const handleChatClick = useCallback((chatId: number) => {
+    chatsStore.setSelectedChatIndex(chatId);
+    chatsStore.fetchMessages();
+  }, []);
+
   useEffect(() => {
     chatsStore.fetchChats();
   }, []);
@@ -27,11 +32,9 @@ const ChatList = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <div className={styles.chatList}>
-          {chats.map((chat) => (
-            <ChatCard key={chat.id} {...chat} />
-          ))}
-        </div>
+        {chats.map((chat) => (
+          <ChatCard key={chat.id} {...chat} onClick={() => handleChatClick(chat.id)} />
+        ))}
         <CircleButton onClick={handleOpenCreateNewChatClick} className={styles.addBtn} />
       </div>
       {modalVisible && <CreateChatModal closeModal={handleCloseCreateNewChat} />}

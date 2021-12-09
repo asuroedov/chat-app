@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 
 import AuthFields from "./AuthFields/AuthFields";
 import FormErrorsBlock from "../../components/FormErrosBlock/FormErrorsBlock";
-import FormTitle from "../../primitives/FormTitle/FormTitle";
+import FormTitle from "../../components/FormTitle/FormTitle";
 
 import authStore from "../../stores/auth/authStore";
 
