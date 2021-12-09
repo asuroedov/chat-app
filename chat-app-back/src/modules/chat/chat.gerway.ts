@@ -1,4 +1,4 @@
-import { MessageBody, SubscribeMessage, WebSocketGateway } from "@nestjs/websockets";
+import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway } from "@nestjs/websockets";
 import { ClassSerializerInterceptor, UseGuards, UseInterceptors } from "@nestjs/common";
 
 import { SocketJwtAuthGuard } from "../../guards/socketJwtAuthGuard.guard";
@@ -6,6 +6,7 @@ import { UserEntity } from "../../models/UserEntity";
 import { CurrentUser } from "../../decorators/currentUser.decorator";
 import { ChatService } from "./chat.service";
 import { socketEventNames } from "../../utils/socketEventNames";
+import { Socket } from "socket.io";
 
 @UseGuards(SocketJwtAuthGuard)
 @WebSocketGateway(5050, { cors: true })
@@ -25,10 +26,11 @@ export class ChatGateway {
 
   @UseInterceptors(ClassSerializerInterceptor)
   @SubscribeMessage(socketEventNames.getUserChats)
-  async getUserChats(@CurrentUser() user: UserEntity) {
+  async getUserChats(@CurrentUser() user: UserEntity, @ConnectedSocket() socket: Socket) {
     const chats = await this.chatService.getUserChats(user);
 
     if (!chats) return { event: socketEventNames.createChatFail };
+    socket.join(chats.map((chat) => `${chat.id}`));
     return { event: socketEventNames.getUserChatsSuccess, data: chats };
   }
 

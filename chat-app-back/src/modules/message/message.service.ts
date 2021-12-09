@@ -17,7 +17,7 @@ export class MessageService {
     const chat = await this.chatRepository.findOne({ id: chatId }, { relations: ["messages", "messages.owner"] });
     if (!chat) return;
 
-    return chat.messages;
+    return chat.messages.sort((m1, m2) => m1.id - m2.id);
   }
 
   async newMessage(messageText: string, chatId: number, user: UserEntity) {

@@ -1,4 +1,5 @@
-import { MessageBody, SubscribeMessage, WebSocketGateway } from "@nestjs/websockets";
+import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway } from "@nestjs/websockets";
+import { Socket } from "socket.io";
 import { ClassSerializerInterceptor, UseGuards, UseInterceptors } from "@nestjs/common";
 import { SocketJwtAuthGuard } from "../../guards/socketJwtAuthGuard.guard";
 import { MessageService } from "./message.service";
@@ -21,12 +22,17 @@ export class MessageGateway {
   }
 
   @SubscribeMessage(socketEventNames.sendMessage)
-  async newMessage(@MessageBody() payload: { message: string; chatId: number }, @CurrentUser() user: UserEntity) {
+  async newMessage(
+    @MessageBody() payload: { message: string; chatId: number },
+    @CurrentUser() user: UserEntity,
+    @ConnectedSocket() socket: Socket,
+  ) {
     const { message, chatId } = payload;
 
     const savedMessage = await this.messageService.newMessage(message, chatId, user);
 
     if (!savedMessage) return { event: socketEventNames.sendMessageFail };
+    socket.to(chatId.toString()).emit(socketEventNames.sendMessageSuccess, savedMessage);
     return { event: socketEventNames.sendMessageSuccess, data: savedMessage };
   }
 }
