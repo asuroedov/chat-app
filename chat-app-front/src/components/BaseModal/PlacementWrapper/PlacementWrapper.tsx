@@ -7,7 +7,7 @@ interface PlacementWrapperProps {
   placement?: Element;
 }
 
-const PlacementWrapper: FC<PlacementWrapperProps> = ({ inPortal, children = true, placement }) => {
+const PlacementWrapper: FC<PlacementWrapperProps> = ({ inPortal = true, children, placement }) => {
   return <>{inPortal ? ReactDOM.createPortal(children, placement || document.body) : <>{children}</>}</>;
 };
 
